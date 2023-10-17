@@ -50,7 +50,7 @@ int _setenvironment(info_t *info)
 		show_error_msg("Invalid number of arguments\n");
 		return (0);
 	}
-	if (_setenv(info, info->argv[1], info->argv[2]))
+	if (add_env_variable(info, info->argv[1], info->argv[2]))
 		return (1);
 	return (0);
 }
@@ -72,7 +72,7 @@ int _unsetenvironment(info_t *info)
 		return (1);
 	}
 	for (i = 1; i <= info->argc; i++)
-		_unsetenvironment_variable(info, info->argv[i]);
+		remove_env_variable(info, info->argv[i]);
 
 	return (0);
 }
