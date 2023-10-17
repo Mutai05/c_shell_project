@@ -193,9 +193,9 @@ void set_info(info_t *, char **);
 void free_info(info_t *, int);
 
 /* toem_environ.c */
-char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
-int _mysetenv(info_t *);
+char *_environment_variable(info_t *, const char *);
+int _listenv(info_t *);
+int _setenvironment(info_t *);
 int _myunsetenv(info_t *);
 int populate_env_list(info_t *);
 
@@ -214,7 +214,7 @@ int update_history_line_numbers(info_t *info);
 /* toem_lists.c */
 list_t *add_node(list_t **, const char *, int);
 list_t *add_node_end(list_t **, const char *, int);
-size_t print_list_str(const list_t *);
+size_t output_string_list(const list_t *);
 int delete_node_at_index(list_t **, unsigned int);
 void free_list(list_t **);
 

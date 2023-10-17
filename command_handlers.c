@@ -47,24 +47,24 @@ int _changedir(info_t *info)
 		_puts("TODO: >>Failure message here<<\n");
 	if (!info->argv[1])
 	{
-		dir = _getenv(info, "HOME=");
+		dir = _environment_variable(info, "HOME=");
 		if (!dir)
 			chdir_ret =
-				chdir((dir = _getenv(info, "PWD=")) ? dir : "/");
+				chdir((dir = _environment_variable(info, "PWD=")) ? dir : "/");
 		else
 			chdir_ret = chdir(dir);
 	}
 	else if (_strcmp(info->argv[1], "-") == 0)
 	{
-		if (!_getenv(info, "OLDPWD="))
+		if (!_environment_variable(info, "OLDPWD="))
 		{
 			_puts(s);
 			_putchar('\n');
 			return (1);
 		}
-		_puts(_getenv(info, "OLDPWD=")), _putchar('\n');
+		_puts(_environment_variable(info, "OLDPWD=")), _putchar('\n');
 		chdir_ret =
-			chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
+			chdir((dir = _environment_variable(info, "OLDPWD=")) ? dir : "/");
 	}
 	else
 		chdir_ret = chdir(info->argv[1]);
@@ -76,7 +76,7 @@ int _changedir(info_t *info)
 	}
 	else
 	{
-		_setenv(info, "OLDPWD", _getenv(info, "PWD="));
+		_setenv(info, "OLDPWD", _environment_variable(info, "PWD="));
 		_setenv(info, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);
