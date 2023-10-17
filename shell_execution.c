@@ -62,7 +62,7 @@ int find_builtin(info_t *info)
 		{"help", _seehelp},
 		{"history", _allhistory},
 		{"setenv", _setenvironment},
-		{"unsetenv", _myunsetenv},
+		{"unsetenv", _unsetenvironment},
 		{"cd", _changedir},
 		{"alias", _myalias},
 		{NULL, NULL}};

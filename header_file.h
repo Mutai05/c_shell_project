@@ -196,12 +196,12 @@ void free_info(info_t *, int);
 char *_environment_variable(info_t *, const char *);
 int _listenv(info_t *);
 int _setenvironment(info_t *);
-int _myunsetenv(info_t *);
-int populate_env_list(info_t *);
+int _unsetenvironment(info_t *);
+int initialize_env(info_t *);
 
 /* toem_getenv.c */
 char **get_environ(info_t *);
-int _unsetenv(info_t *, char *);
+int _unsetenvironment_variable(info_t *, char *);
 int _setenv(info_t *, char *, char *);
 
 /* toem_history.c */
