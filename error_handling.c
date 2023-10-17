@@ -1,12 +1,12 @@
 #include "header_file.h"
 
 /**
- *_eputs - prints an input string
- * @str: the string to be printed
+ * _print_error_message - Prints an error message to stderr.
+ * @str: The string to be printed.
  *
- * Return: Nothing
+ * Return: Nothing.
  */
-void _eputs(char *str)
+void _print_error_message(char *str)
 {
 	int i = 0;
 
@@ -14,19 +14,18 @@ void _eputs(char *str)
 		return;
 	while (str[i] != '\0')
 	{
-		_eputchar(str[i]);
+		_write_char_to_stderr(str[i]);
 		i++;
 	}
 }
 
 /**
- * _eputchar - writes the character c to stderr
- * @c: The character to print
+ * _write_char_to_stderr - Writes a character to stderr.
+ * @c: The character to print.
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: On success, 1. On error, -1 is returned, and errno is set appropriately.
  */
-int _eputchar(char c)
+int _write_char_to_stderr(char c)
 {
 	static int i;
 	static char buf[WRITE_BUF_SIZE];
@@ -38,18 +37,17 @@ int _eputchar(char c)
 	}
 	if (c != BUF_FLUSH)
 		buf[i++] = c;
-	return (1);
+	return 1;
 }
 
 /**
- * _putfd - writes the character c to given fd
- * @c: The character to print
- * @fd: The filedescriptor to write to
+ * _write_to_fd - Writes a character to a given file descriptor.
+ * @c: The character to print.
+ * @fd: The file descriptor to write to.
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: On success, 1. On error, -1 is returned, and errno is set appropriately.
  */
-int _putfd(char c, int fd)
+int _write_to_fd(char c, int fd)
 {
 	static int i;
 	static char buf[WRITE_BUF_SIZE];
@@ -61,25 +59,25 @@ int _putfd(char c, int fd)
 	}
 	if (c != BUF_FLUSH)
 		buf[i++] = c;
-	return (1);
+	return 1;
 }
 
 /**
- *_putsfd - prints an input string
- * @str: the string to be printed
- * @fd: the filedescriptor to write to
+ * _write_string_to_fd - Writes an input string to a file descriptor.
+ * @str: The string to be printed.
+ * @fd: The file descriptor to write to.
  *
- * Return: the number of chars put
+ * Return: The number of characters written.
  */
-int _putsfd(char *str, int fd)
+int _write_string_to_fd(char *str, int fd)
 {
 	int i = 0;
 
 	if (!str)
-		return (0);
+		return 0;
 	while (*str)
 	{
-		i += _putfd(*str++, fd);
+		i += _write_to_fd(*str++, fd);
 	}
-	return (i);
+	return i;
 }
