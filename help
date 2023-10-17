@@ -16,7 +16,7 @@ A star (*) next to a name means that the command is disabled.
  bg [job_spec ...]                                               mapfile [-d delim] [-n count] [-O origin] [-s count] [-t] [->
  bind [-lpsvPSVX] [-m keymap] [-f filename] [-q name] [-u name>  popd [-n] [+N | -N]
  break [n]                                                       printf [-v var] format [arguments]
- builtin [shell-builtin [arg ...]]                               pushd [-n] [+N | -N | dir]
+ built_in [shell-built_in [arg ...]]                               pushd [-n] [+N | -N | dir]
  caller [expr]                                                   pwd [-LP]
  case WORD in [PATTERN [| PATTERN]...) COMMANDS ;;]... esac      read [-ers] [-a array] [-d delim] [-i text] [-n nchars] [-N >
  cd [-L|[-P [-e]] [-@]] [dir]                                    readarray [-d delim] [-n count] [-O origin] [-s count] [-t] >
