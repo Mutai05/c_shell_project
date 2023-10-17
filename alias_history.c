@@ -15,13 +15,13 @@ int _allhistory(info_t *info)
 }
 
 /**
- * unset_alias - Unsets an alias by its name.
+ * remove_alias - Unsets an alias by its name.
  * @info: Parameter struct.
  * @str: The alias string to unset.
  *
  * Return: Always 0 on success, 1 on error.
  */
-int unset_alias(info_t *info, char *str)
+int remove_alias(info_t *info, char *str)
 {
 	char *p;
 	char c;
@@ -53,9 +53,9 @@ int set_alias(info_t *info, char *str)
 	if (!p)
 		return (1);
 	if (!*++p)
-		return (unset_alias(info, str));
+		return (remove_alias(info, str));
 
-	unset_alias(info, str);
+	remove_alias(info, str);
 	return (add_node_end(&(info->alias), str, 0) == NULL);
 }
 
