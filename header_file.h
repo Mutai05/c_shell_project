@@ -213,7 +213,7 @@ int update_history_line_numbers(info_t *info);
 
 /* toem_lists.c */
 list_t *add_node(list_t **, const char *, int);
-list_t *add_node_end(list_t **, const char *, int);
+list_t *append_node(list_t **, const char *, int);
 size_t output_string_list(const list_t *);
 int delete_node_at_index(list_t **, unsigned int);
 void free_list(list_t **);
