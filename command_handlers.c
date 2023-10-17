@@ -59,10 +59,10 @@ int _changedir(info_t *info)
 		if (!_environment_variable(info, "OLDPWD="))
 		{
 			_puts(s);
-			_putchar('\n');
+			write_char('\n');
 			return (1);
 		}
-		_puts(_environment_variable(info, "OLDPWD=")), _putchar('\n');
+		_puts(_environment_variable(info, "OLDPWD=")), write_char('\n');
 		chdir_ret =
 			chdir((dir = _environment_variable(info, "OLDPWD=")) ? dir : "/");
 	}

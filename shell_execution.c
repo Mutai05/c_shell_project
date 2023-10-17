@@ -19,7 +19,7 @@ int hsh(info_t *info, char **av)
 		if (interactive(info))
 			_puts("$ ");
 		_write_char_to_stderr(BUF_FLUSH);
-		r = get_input(info);
+		r = get_line_input(info);
 		if (r != -1)
 		{
 			set_info(info, av);
@@ -28,7 +28,7 @@ int hsh(info_t *info, char **av)
 				find_cmd(info);
 		}
 		else if (interactive(info))
-			_putchar('\n');
+			write_char('\n');
 		free_info(info, 0);
 	}
 	save_history_to_file(info);

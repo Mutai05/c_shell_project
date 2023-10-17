@@ -70,8 +70,8 @@ size_t show_list(const list_t *h)
 	while (h)
 	{
 		_puts(converts_number(h->num, 10, 0));
-		_putchar(':');
-		_putchar(' ');
+		write_char(':');
+		write_char(' ');
 		_puts(h->str ? h->str : "(nil)");
 		_puts("\n");
 		h = h->next;
