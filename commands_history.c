@@ -123,7 +123,8 @@ int add_history_entry(info_t *info, char *buf, int linecount)
 }
 
 /**
- * update_history_line_numbers - Renumber the history linked list after changes.
+ * update_history_line_numbers - Renumber the history linked
+ * list after changes.
  * @info: Parameter struct.
  *
  * Return: The new histcount.
