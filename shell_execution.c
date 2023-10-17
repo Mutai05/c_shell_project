@@ -57,13 +57,13 @@ int find_builtin(info_t *info)
 {
 	int i, built_in_ret = -1;
 	builtin_table builtintbl[] = {
-		{"exit", _myexit},
+		{"exit", _shellexit},
 		{"env", _myenv},
-		{"help", _myhelp},
+		{"help", _seehelp},
 		{"history", _allhistory},
 		{"setenv", _mysetenv},
 		{"unsetenv", _myunsetenv},
-		{"cd", _mycd},
+		{"cd", _changedir},
 		{"alias", _myalias},
 		{NULL, NULL}};
 
@@ -113,7 +113,7 @@ void find_cmd(info_t *info)
 		else if (*(info->arg) != '\n')
 		{
 			info->status = 127;
-			print_error(info, "not found\n");
+			show_error(info, "not found\n");
 		}
 	}
 }
@@ -153,7 +153,7 @@ void fork_cmd(info_t *info)
 		{
 			info->status = WEXITSTATUS(info->status);
 			if (info->status == 126)
-				print_error(info, "Permission denied\n");
+				show_error(info, "Permission denied\n");
 		}
 	}
 }

@@ -58,12 +58,12 @@ char **list_to_strings(list_t *head)
 }
 
 /**
- * print_list - Prints all elements of a list_t linked list.
+ * show_list - Prints all elements of a list_t linked list.
  * @h: Pointer to the first node.
  *
  * Return: The size of the list.
  */
-size_t print_list(const list_t *h)
+size_t show_list(const list_t *h)
 {
 	size_t i = 0;
 

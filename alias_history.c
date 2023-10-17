@@ -10,7 +10,7 @@
 int _allhistory(info_t *info)
 {
 	list_t *node = info->history;
-	print_list(node);
+	show_list(node);
 	return (0);
 }
 
@@ -39,13 +39,13 @@ int remove_alias(info_t *info, char *str)
 }
 
 /**
- * set_alias - Sets an alias to a string.
+ * add_alias - Sets an alias to a string.
  * @info: Parameter struct.
  * @str: The alias string to set.
  *
  * Return: Always 0 on success, 1 on error.
  */
-int set_alias(info_t *info, char *str)
+int add_alias(info_t *info, char *str)
 {
 	char *p;
 
@@ -60,12 +60,12 @@ int set_alias(info_t *info, char *str)
 }
 
 /**
- * print_alias - Prints an alias string.
+ * display_alias - Prints an alias string.
  * @node: The alias node.
  *
  * Return: Always 0 on success, 1 on error.
  */
-int print_alias(list_t *node)
+int display_alias(list_t *node)
 {
 	char *p = NULL;
 	char *a = NULL;
@@ -100,7 +100,7 @@ int _myalias(info_t *info)
 		node = info->alias;
 		while (node)
 		{
-			print_alias(node);
+			display_alias(node);
 			node = node->next;
 		}
 		return (0);
@@ -109,9 +109,9 @@ int _myalias(info_t *info)
 	{
 		p = _strchr(info->argv[i], '=');
 		if (p)
-			set_alias(info, info->argv[i]);
+			add_alias(info, info->argv[i]);
 		else
-			print_alias(node_starts_with(info->alias, info->argv[i], '='));
+			display_alias(node_starts_with(info->alias, info->argv[i], '='));
 	}
 
 	return (0);
