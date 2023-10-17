@@ -1,18 +1,18 @@
 #include "header_file.h"
 
 /**
- * _erratoi - converts a string to an integer
- * @s: the string to be converted
- * Return: 0 if no numbers in string, converted number otherwise
- *       -1 on error
+ * string_to_int - Converts a string to an integer.
+ * @s: The string to be converted.
+ *
+ * Return: The converted number if successful, or -1 on error.
  */
-int _erratoi(char *s)
+int string_to_int(char *s)
 {
 	int i = 0;
 	unsigned long int result = 0;
 
 	if (*s == '+')
-		s++; /* TODO: why does this make main return 255? */
+		s++;
 	for (i = 0; s[i] != '\0'; i++)
 	{
 		if (s[i] >= '0' && s[i] <= '9')
@@ -20,40 +20,38 @@ int _erratoi(char *s)
 			result *= 10;
 			result += (s[i] - '0');
 			if (result > INT_MAX)
-				return (-1);
+				return -1;
 		}
 		else
-			return (-1);
+			return -1;
 	}
-	return (result);
+	return result;
 }
 
 /**
- * show_error - prints an error message
- * @info: the parameter & return info struct
- * @estr: string containing specified error type
- * Return: 0 if no numbers in string, converted number otherwise
- *        -1 on error
+ * print_error - Prints an error message to the standard error.
+ * @info: The parameter and return info struct.
+ * @estr: String containing a specified error type.
  */
-void show_error(info_t *info, char *estr)
+void print_error(info_t *info, char *estr)
 {
-	_print_error_message(info->fname);
-	_print_error_message(": ");
-	print_d(info->line_count, STDERR_FILENO);
-	_print_error_message(": ");
-	_print_error_message(info->argv[0]);
-	_print_error_message(": ");
-	_print_error_message(estr);
+	show_error_msg(info->fname);
+	show_error_msg(": ");
+	print_dec(info->line_count, STDERR_FILENO);
+	show_error_msg(": ");
+	show_error_msg(info->argv[0]);
+	show_error_msg(": ");
+	show_error_msg(estr);
 }
 
 /**
- * print_d - function prints a decimal (integer) number (base 10)
- * @input: the input
- * @fd: the filedescriptor to write to
+ * print_dec - Prints a decimal (integer) number (base 10) to the specified file descriptor.
+ * @input: The input number to be printed.
+ * @fd: The file descriptor to write to.
  *
- * Return: number of characters printed
+ * Return: The number of characters printed.
  */
-int print_d(int input, int fd)
+int print_dec(int input, int fd)
 {
 	int (*__putchar)(char) = _putchar;
 	int i, count = 0;
@@ -82,18 +80,19 @@ int print_d(int input, int fd)
 	__putchar('0' + current);
 	count++;
 
-	return (count);
+	return count;
 }
 
 /**
- * convert_number - converter function, a clone of itoa
- * @num: number
- * @base: base
- * @flags: argument flags
+ * converts_number - Converter function for converting
+ * 		a number to a string.
+ * @num: The number to be converted.
+ * @base: The base for the conversion.
+ * @flags: Argument flags.
  *
- * Return: string
+ * Return: The resulting string.
  */
-char *convert_number(long int num, int base, int flags)
+char *converts_number(long int num, int base, int flags)
 {
 	static char *array;
 	static char buffer[50];
@@ -106,7 +105,7 @@ char *convert_number(long int num, int base, int flags)
 		n = -num;
 		sign = '-';
 	}
-	array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
+	array = flags & CONVERT_LOWERCASE ? "0123456abcd" : "0123456ABCD";
 	ptr = &buffer[49];
 	*ptr = '\0';
 
@@ -118,16 +117,15 @@ char *convert_number(long int num, int base, int flags)
 
 	if (sign)
 		*--ptr = sign;
-	return (ptr);
+	return ptr;
 }
 
 /**
- * remove_comments - function replaces first instance of '#' with '\0'
- * @buf: address of the string to modify
- *
- * Return: Always 0;
+ * erase_comments - Replaces the first instance of
+ * 		'#' with '\0' in the input string.
+ * @buf: Address of the string to modify.
  */
-void remove_comments(char *buf)
+void erase_comments(char *buf)
 {
 	int i;
 

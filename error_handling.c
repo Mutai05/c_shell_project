@@ -1,12 +1,12 @@
 #include "header_file.h"
 
 /**
- * _print_error_message - Prints an error message to stderr.
+ * show_error_msg - Prints an error message to stderr.
  * @str: The string to be printed.
  *
  * Return: Nothing.
  */
-void _print_error_message(char *str)
+void show_error_msg(char *str)
 {
 	int i = 0;
 

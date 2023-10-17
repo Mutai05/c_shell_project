@@ -26,9 +26,9 @@ int main(int ac, char **av)
 				exit(126);
 			if (errno == ENOENT)
 			{
-				_print_error_message(av[0]);
-				_print_error_message(": 0: Can't open ");
-				_print_error_message(av[1]);
+				show_error_msg(av[0]);
+				show_error_msg(": 0: Can't open ");
+				show_error_msg(av[1]);
 				_write_char_to_stderr('\n');
 				_write_char_to_stderr(BUF_FLUSH);
 				exit(127);

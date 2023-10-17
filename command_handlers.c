@@ -14,16 +14,16 @@ int _shellexit(info_t *info)
 
 	if (info->argv[1])
 	{
-		exitcheck = _erratoi(info->argv[1]);
+		exitcheck = string_to_int(info->argv[1]);
 		if (exitcheck == -1)
 		{
 			info->status = 2;
-			show_error(info, "Invalid number: ");
-			_print_error_message(info->argv[1]);
+			print_error(info, "Invalid number: ");
+			show_error_msg(info->argv[1]);
 			_write_char_to_stderr('\n');
 			return (1);
 		}
-		info->err_num = _erratoi(info->argv[1]);
+		info->err_num = string_to_int(info->argv[1]);
 		return (-2);
 	}
 	info->err_num = -1;
@@ -70,8 +70,8 @@ int _changedir(info_t *info)
 		chdir_ret = chdir(info->argv[1]);
 	if (chdir_ret == -1)
 	{
-		show_error(info, "Can't change directory!");
-		_print_error_message(info->argv[1]);
+		print_error(info, "Can't change directory!");
+		show_error_msg(info->argv[1]);
 		_write_char_to_stderr('\n');
 	}
 	else

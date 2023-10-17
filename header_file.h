@@ -23,7 +23,7 @@
 #define CMD_AND 2
 #define CMD_CHAIN 3
 
-/* for convert_number() */
+/* for converts_number() */
 #define CONVERT_LOWERCASE 1
 #define CONVERT_UNSIGNED 2
 
@@ -128,7 +128,7 @@ char *find_path(info_t *, char *, char *);
 int loophsh(char **);
 
 /* toem_errors.c */
-void _print_error_message(char *);
+void show_error_msg(char *);
 int _write_char_to_stderr(char);
 int _write_to_fd(char c, int fd);
 int _write_string_to_fd(char *str, int fd);
@@ -169,11 +169,11 @@ int _isalpha(int);
 int _atoi(char *);
 
 /* toem_errors1.c */
-int _erratoi(char *);
-void show_error(info_t *, char *);
-int print_d(int, int);
-char *convert_number(long int, int, int);
-void remove_comments(char *);
+int string_to_int(char *);
+void print_error(info_t *, char *);
+int print_dec(int, int);
+char *converts_number(long int, int, int);
+void erase_comments(char *);
 
 /* toem_builtin.c */
 int _shellexit(info_t *);

@@ -47,7 +47,7 @@ int _setenvironment(info_t *info)
 {
 	if (info->argc != 3)
 	{
-		_print_error_message("Invalid number of arguments\n");
+		show_error_msg("Invalid number of arguments\n");
 		return (0);
 	}
 	if (_setenv(info, info->argv[1], info->argv[2]))
@@ -68,7 +68,7 @@ int _unsetenvironment(info_t *info)
 
 	if (info->argc == 1)
 	{
-		_print_error_message("Few arguments.\n");
+		show_error_msg("Few arguments.\n");
 		return (1);
 	}
 	for (i = 1; i <= info->argc; i++)
