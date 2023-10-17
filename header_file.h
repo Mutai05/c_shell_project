@@ -205,11 +205,11 @@ int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
 
 /* toem_history.c */
-char *get_history_file(info_t *info);
-int write_history(info_t *info);
-int read_history(info_t *info);
-int build_history_list(info_t *info, char *buf, int linecount);
-int renumber_history(info_t *info);
+char *see_file_history(info_t *info);
+int save_history_to_file(info_t *info);
+int load_history_from_file(info_t *info);
+int add_history_entry(info_t *info, char *buf, int linecount);
+int update_history_line_numbers(info_t *info);
 
 /* toem_lists.c */
 list_t *add_node(list_t **, const char *, int);
