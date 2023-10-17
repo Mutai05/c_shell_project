@@ -17,7 +17,7 @@ ssize_t input_buffer(info_t *info, char **buf, size_t *len)
 	{
 		free(*buf);
 		*buf = NULL;
-		signal(SIGINT, sigintHandler);
+		signal(SIGINT, blockCtrlC);
 #if USE_GETLINE
 		r = getline(buf, &len_p, stdin);
 #else
@@ -89,14 +89,14 @@ ssize_t get_line_input(info_t *info)
 }
 
 /**
- * read_buf - reads a buffer
+ * read_buffer - reads a buffer
  * @info: parameter struct
  * @buf: buffer
  * @i: size
  *
  * Return: r
  */
-ssize_t read_buf(info_t *info, char *buf, size_t *i)
+ssize_t read_buffer(info_t *info, char *buf, size_t *i)
 {
 	ssize_t r = 0;
 
@@ -130,7 +130,7 @@ int get_input_line(info_t *info, char **ptr, size_t *length)
 	if (i == len)
 		i = len = 0;
 
-	r = read_buf(info, buf, &len);
+	r = read_buffer(info, buf, &len);
 	if (r == -1 || (r == 0 && len == 0))
 		return (-1);
 
@@ -156,12 +156,12 @@ int get_input_line(info_t *info, char **ptr, size_t *length)
 }
 
 /**
- * sigintHandler - blocks ctrl-C
+ * blockCtrlC - blocks ctrl-C
  * @sig_num: the signal number
  *
  * Return: void
  */
-void sigintHandler(__attribute__((unused)) int sig_num)
+void blockCtrlC(__attribute__((unused)) int sig_num)
 {
 	_puts("\n");
 	_puts("$ ");

@@ -187,7 +187,7 @@ int _myalias(info_t *);
 /*toem_getline.c */
 ssize_t get_line_input(info_t *);
 int get_input_line(info_t *, char **, size_t *);
-void sigintHandler(int);
+void blockCtrlC(int);
 
 /* toem_getinfo.c */
 void clear_info(info_t *);
