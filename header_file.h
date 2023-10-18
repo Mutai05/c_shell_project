@@ -75,9 +75,9 @@ typedef struct passinfo
 	}
 
 /**
- *struct built_in - contains a built_in string and related function
- *@type: the built_in command flag
- *@func: the function
+ * struct built_in - contains a built_in string and related function
+ * @type: the built_in command flag
+ * @func: the function
  */
 typedef struct built_in
 {
@@ -149,7 +149,7 @@ int get_input_line(info_t *, char **, size_t *);
 void blockCtrlC(int);
 
 void clear_info(info_t *);
-void set_info(info_t *, char **);
+void initialize_info(info_t *, char **);
 void free_info(info_t *, int);
 
 char *_environment_variable(info_t *, const char *);
