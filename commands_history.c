@@ -96,7 +96,7 @@ int load_history_from_file(info_t *info)
 	free(buf);
 	info->histcount = linecount;
 	while (info->histcount-- >= HIST_MAX)
-		delete_node_at_index(&(info->history), 0);
+		remove_node_at_index(&(info->history), 0);
 	update_history_line_numbers(info);
 	return (info->histcount);
 }

@@ -168,11 +168,11 @@ int load_history_from_file(info_t *info);
 int add_history_entry(info_t *info, char *buf, int linecount);
 int update_history_line_numbers(info_t *info);
 
-list_t *add_node(list_t **, const char *, int);
+list_t *prepend_node(list_t **, const char *, int);
 list_t *append_node(list_t **, const char *, int);
 size_t output_string_list(const list_t *);
-int delete_node_at_index(list_t **, unsigned int);
-void free_list(list_t **);
+int remove_node_at_index(list_t **, unsigned int);
+void clear_list(list_t **);
 
 size_t list_len(const list_t *);
 char **list_to_strings(list_t *);
