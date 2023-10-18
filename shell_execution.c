@@ -1,11 +1,11 @@
 #include "header_file.h"
 
 /**
- * hsh - main shell loop
- * @info: the parameter & return info struct
- * @av: the argument vector from main()
+ * hsh - Main shell loop.
+ * @info: The parameter & return info struct.
+ * @av: The argument vector from main().
  *
- * Return: 0 on success, 1 on error, or error code
+ * Return: 0 on success, 1 on error, or error code.
  */
 int hsh(info_t *info, char **av)
 {
@@ -14,7 +14,6 @@ int hsh(info_t *info, char **av)
 
 	while (r != -1 && builtin_ret != -2)
 	{
-
 		clear_info(info);
 		if (interactive(info))
 			_puts("shell$ ");
@@ -45,9 +44,10 @@ int hsh(info_t *info, char **av)
 }
 
 /**
- * builtin_command - finds a built_in command
- * @info: the parameter & return info struct
+ * builtin_command - Finds a built-in command.
+ * @info: The parameter & return info struct.
  *
+ * Return: The return code from the built-in command.
  */
 int builtin_command(info_t *info)
 {
@@ -74,10 +74,8 @@ int builtin_command(info_t *info)
 }
 
 /**
- * command_path - finds a command in PATH
- * @info: the parameter & return info struct
- *
- * Return: void
+ * command_path - Finds a command in the PATH.
+ * @info: The parameter & return info struct.
  */
 void command_path(info_t *info)
 {
@@ -115,10 +113,8 @@ void command_path(info_t *info)
 }
 
 /**
- * fork_command - forks a an exec thread to run cmd
- * @info: the parameter & return info struct
- *
- * Return: void
+ * fork_command - Forks a child process to execute a command.
+ * @info: The parameter & return info struct.
  */
 void fork_command(info_t *info)
 {
@@ -127,7 +123,6 @@ void fork_command(info_t *info)
 	child_pid = fork();
 	if (child_pid == -1)
 	{
-
 		perror("Error:");
 		return;
 	}
