@@ -1,10 +1,10 @@
 #include "header_file.h"
 
 /**
- * count_nodes - Determines the length of a linked list.
+ * count_nodes - Counts the number of nodes in a linked list.
  * @h: Pointer to the first node.
  *
- * Return: The size of the list.
+ * Return: The total number of nodes in the list.
  */
 size_t count_nodes(const list_t *h)
 {
@@ -61,7 +61,7 @@ char **list_to_strings(list_t *head)
  * show_list - Prints all elements of a list_t linked list.
  * @h: Pointer to the first node.
  *
- * Return: The size of the list.
+ * Return: The number of elements in the list.
  */
 size_t show_list(const list_t *h)
 {
@@ -86,7 +86,7 @@ size_t show_list(const list_t *h)
  * @prefix: The prefix to match.
  * @c: The next character after the prefix to match (-1 if any character).
  *
- * Return: The matching node or NULL.
+ * Return: The matching node or NULL if not found.
  */
 list_t *find_node_with_prefix(list_t *node, char *prefix, char c)
 {
@@ -103,11 +103,11 @@ list_t *find_node_with_prefix(list_t *node, char *prefix, char c)
 }
 
 /**
- * retrieve_node_index - Gets the index of a node in a linked list.
+ * retrieve_node_index - Retrieves the index of a specific node in a linked list.
  * @head: Pointer to the list head.
  * @node: Pointer to the node.
  *
- * Return: The index of the node or -1 if not found.
+ * Return: The index of the node or -1 if the node is not found.
  */
 ssize_t retrieve_node_index(list_t *head, list_t *node)
 {

@@ -1,21 +1,21 @@
 #include "header_file.h"
 
 /**
- * main - entry point
- * @ac: arg count
- * @av: arg vector
+ * main - The entry point for the simple shell.
+ * @ac: The number of command-line arguments.
+ * @av: An array of strings containing the command-line arguments.
  *
- * Return: 0 on success, 1 on error
+ * Return: 0 on success, 1 on error.
  */
 int main(int ac, char **av)
 {
-	info_t info[] = { INFO_INIT };
+	info_t info[] = {INFO_INIT}; /* Initialize an info_t struct */
 	int fd = 2;
 
-	asm ("mov %1, %0\n\t"
+	asm("mov %1, %0\n\t"
 		"add $3, %0"
-		: "=r" (fd)
-		: "r" (fd));
+		: "=r"(fd)
+		: "r"(fd));
 
 	if (ac == 2)
 	{
@@ -27,7 +27,7 @@ int main(int ac, char **av)
 			if (errno == ENOENT)
 			{
 				show_error_msg(av[0]);
-				show_error_msg(": 0: Can't open ");
+				show_error_msg(": 0: Cannot open ");
 				show_error_msg(av[1]);
 				_write_char_to_stderr('\n');
 				_write_char_to_stderr(BUF_FLUSH);
@@ -40,5 +40,5 @@ int main(int ac, char **av)
 	initialize_env(info);
 	load_history_from_file(info);
 	hsh(info, av);
-	return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS); /* Return 0 on successful execution */
 }
