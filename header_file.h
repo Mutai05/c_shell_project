@@ -174,11 +174,11 @@ size_t output_string_list(const list_t *);
 int remove_node_at_index(list_t **, unsigned int);
 void clear_list(list_t **);
 
-size_t list_len(const list_t *);
+size_t count_nodes(const list_t *);
 char **list_to_strings(list_t *);
 size_t show_list(const list_t *);
-list_t *node_starts_with(list_t *, char *, char);
-ssize_t get_node_index(list_t *, list_t *);
+list_t *find_node_with_prefix(list_t *, char *, char);
+ssize_t retrieve_node_index(list_t *, list_t *);
 
 int is_chain(info_t *, char *, size_t *);
 void check_chain(info_t *, char *, size_t *, size_t, size_t);
