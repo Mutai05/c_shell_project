@@ -88,9 +88,9 @@ typedef struct built_in
 void print_prompt(void);
 
 int hsh(info_t *, char **);
-int find_builtin(info_t *);
-void find_cmd(info_t *);
-void fork_cmd(info_t *);
+int builtin_command(info_t *);
+void command_path(info_t *);
+void fork_command(info_t *);
 
 int file_cmd(info_t *, char *);
 char *duplicate_chars(char *, int, int);
@@ -158,7 +158,7 @@ int _setenvironment(info_t *);
 int _unsetenvironment(info_t *);
 int initialize_env(info_t *);
 
-char **copy_environ_strings(info_t *);
+char **copy_env_strings(info_t *);
 int remove_env_variable(info_t *, char *);
 int add_env_variable(info_t *, char *, char *);
 

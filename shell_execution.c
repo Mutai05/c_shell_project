@@ -17,15 +17,15 @@ int hsh(info_t *info, char **av)
 
 		clear_info(info);
 		if (interactive(info))
-			_puts("$ ");
+			_puts("shell$ ");
 		_write_char_to_stderr(BUF_FLUSH);
 		r = get_line_input(info);
 		if (r != -1)
 		{
 			initialize_info(info, av);
-			builtin_ret = find_builtin(info);
+			builtin_ret = builtin_command(info);
 			if (builtin_ret == -1)
-				find_cmd(info);
+				command_path(info);
 		}
 		else if (interactive(info))
 			write_char('\n');
@@ -45,15 +45,11 @@ int hsh(info_t *info, char **av)
 }
 
 /**
- * find_builtin - finds a built_in command
+ * builtin_command - finds a built_in command
  * @info: the parameter & return info struct
  *
- * Return: -1 if built_in not found,
- *			0 if built_in executed successfully,
- *			1 if built_in found but not successful,
- *			-2 if built_in signals exit()
  */
-int find_builtin(info_t *info)
+int builtin_command(info_t *info)
 {
 	int i, built_in_ret = -1;
 	builtin_table builtintbl[] = {
@@ -78,12 +74,12 @@ int find_builtin(info_t *info)
 }
 
 /**
- * find_cmd - finds a command in PATH
+ * command_path - finds a command in PATH
  * @info: the parameter & return info struct
  *
  * Return: void
  */
-void find_cmd(info_t *info)
+void command_path(info_t *info)
 {
 	char *path = NULL;
 	int i, k;
@@ -104,47 +100,46 @@ void find_cmd(info_t *info)
 	if (path)
 	{
 		info->path = path;
-		fork_cmd(info);
+		fork_command(info);
 	}
 	else
 	{
 		if ((interactive(info) || _environment_variable(info, "PATH=") || info->argv[0][0] == '/') && file_cmd(info, info->argv[0]))
-			fork_cmd(info);
+			fork_command(info);
 		else if (*(info->arg) != '\n')
 		{
 			info->status = 127;
-			print_error(info, "not found\n");
+			print_error(info, "Not Available\n");
 		}
 	}
 }
 
 /**
- * fork_cmd - forks a an exec thread to run cmd
+ * fork_command - forks a an exec thread to run cmd
  * @info: the parameter & return info struct
  *
  * Return: void
  */
-void fork_cmd(info_t *info)
+void fork_command(info_t *info)
 {
 	pid_t child_pid;
 
 	child_pid = fork();
 	if (child_pid == -1)
 	{
-		/* TODO: PUT ERROR FUNCTION */
+
 		perror("Error:");
 		return;
 	}
 	if (child_pid == 0)
 	{
-		if (execve(info->path, info->argv, copy_environ_strings(info)) == -1)
+		if (execve(info->path, info->argv, copy_env_strings(info)) == -1)
 		{
 			free_info(info, 1);
 			if (errno == EACCES)
 				exit(126);
 			exit(1);
 		}
-		/* TODO: PUT ERROR FUNCTION */
 	}
 	else
 	{

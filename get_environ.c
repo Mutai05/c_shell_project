@@ -1,12 +1,12 @@
 #include "header_file.h"
 
 /**
- * copy_environ_strings - Returns a copy of the environment as an array of strings.
+ * copy_env_strings - Returns a copy of the environment as an array of strings.
  * @info: Structure containing potential arguments. Used to maintain a
  *        constant function prototype.
  * Return: Always 0
  */
-char **copy_environ_strings(info_t *info)
+char **copy_env_strings(info_t *info)
 {
 	if (!info->environ || info->env_changed)
 	{
