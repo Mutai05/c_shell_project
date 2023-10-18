@@ -117,8 +117,8 @@ char *copy_string(char *, char *, int);
 char *string_cat(char *, char *, int);
 char *string_char(char *, char);
 
-char **strtow(char *, char *);
-char **strtow2(char *, char);
+char **tokenize_string(char *, char *);
+char **split_string(char *, char);
 
 char *fill_memory(char *, char, unsigned int);
 void free_string(char **);
