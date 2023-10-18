@@ -60,7 +60,7 @@ char *locate_path(info_t *info, char *pathstr, char *cmd)
 
 	if (!pathstr)
 		return (NULL);
-	if ((_strlen(cmd) > 2) && starts_with(cmd, "./"))
+	if ((string_len(cmd) > 2) && needle_starts(cmd, "./"))
 	{
 		if (file_cmd(info, cmd))
 			return (cmd);
@@ -71,11 +71,11 @@ char *locate_path(info_t *info, char *pathstr, char *cmd)
 		{
 			path = duplicate_chars(pathstr, curr_pos, i);
 			if (!*path)
-				_strcat(path, cmd);
+				string_conc(path, cmd);
 			else
 			{
-				_strcat(path, "/");
-				_strcat(path, cmd);
+				string_conc(path, "/");
+				string_conc(path, cmd);
 			}
 			if (file_cmd(info, path))
 				return (path);

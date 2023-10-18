@@ -30,7 +30,7 @@ char *copy_string(char *dest, char *src, int n)
  */
 char *string_cat(char *dest, char *src, int n)
 {
-	int dest_len = _strlen(dest);
+	int dest_len = string_len(dest);
 	int i;
 
 	for (i = 0; i < n && src[i] != '\0'; i++)

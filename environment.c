@@ -28,7 +28,7 @@ char *_environment_variable(info_t *info, const char *name)
 
 	while (node)
 	{
-		p = starts_with(node->str, name);
+		p = needle_starts(node->str, name);
 		if (p && *p)
 			return (p);
 		node = node->next;

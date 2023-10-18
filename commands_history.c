@@ -13,13 +13,13 @@ char *see_file_history(info_t *info)
 	dir = _environment_variable(info, "HOME=");
 	if (!dir)
 		return (NULL);
-	buf = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_FILE) + 2));
+	buf = malloc(sizeof(char) * (string_len(dir) + string_len(HIST_FILE) + 2));
 	if (!buf)
 		return (NULL);
 	buf[0] = 0;
-	_strcpy(buf, dir);
-	_strcat(buf, "/");
-	_strcat(buf, HIST_FILE);
+	string_cpy(buf, dir);
+	string_conc(buf, "/");
+	string_conc(buf, HIST_FILE);
 	return (buf);
 }
 

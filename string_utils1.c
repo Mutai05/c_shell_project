@@ -1,13 +1,13 @@
 #include "header_file.h"
 
 /**
- * _strcpy - copies a string
+ * string_cpy - copies a string
  * @dest: the destination
  * @src: the source
  *
  * Return: pointer to destination
  */
-char *_strcpy(char *dest, char *src)
+char *string_cpy(char *dest, char *src)
 {
 	int i = 0;
 
@@ -23,12 +23,12 @@ char *_strcpy(char *dest, char *src)
 }
 
 /**
- * _strdup - duplicates a string
+ * string_dpl - duplicates a string
  * @str: the string to duplicate
  *
  * Return: pointer to the duplicated string
  */
-char *_strdup(const char *str)
+char *string_dpl(const char *str)
 {
 	int length = 0;
 	char *ret;
@@ -46,12 +46,12 @@ char *_strdup(const char *str)
 }
 
 /**
- *_puts - prints an input string
+ *string_puts - prints an input string
  *@str: the string to be printed
  *
  * Return: Nothing
  */
-void _puts(char *str)
+void string_puts(char *str)
 {
 	int i = 0;
 

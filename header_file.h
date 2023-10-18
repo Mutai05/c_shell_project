@@ -103,14 +103,14 @@ int _write_char_to_stderr(char);
 int _write_to_fd(char c, int fd);
 int _write_string_to_fd(char *str, int fd);
 
-int _strlen(char *);
-int _strcmp(char *, char *);
-char *starts_with(const char *, const char *);
-char *_strcat(char *, char *);
+int string_len(char *);
+int string_cmp(char *, char *);
+char *needle_starts(const char *, const char *);
+char *string_conc(char *, char *);
 
-char *_strcpy(char *, char *);
-char *_strdup(const char *);
-void _puts(char *);
+char *string_cpy(char *, char *);
+char *string_dpl(const char *);
+void string_puts(char *);
 int write_char(char);
 
 char *copy_string(char *, char *, int);

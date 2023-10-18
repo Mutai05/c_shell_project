@@ -40,7 +40,7 @@ char **list_to_strings(list_t *head)
 
 	for (i = 0; node; node = node->next, i++)
 	{
-		str = malloc(_strlen(node->str) + 1);
+		str = malloc(string_len(node->str) + 1);
 		if (!str)
 		{
 			for (j = 0; j < i; j++)
@@ -49,7 +49,7 @@ char **list_to_strings(list_t *head)
 			return NULL;
 		}
 
-		str = _strcpy(str, node->str);
+		str = string_cpy(str, node->str);
 		strs[i] = str;
 	}
 
@@ -69,11 +69,11 @@ size_t show_list(const list_t *h)
 
 	while (h)
 	{
-		_puts(converts_number(h->num, 10, 0));
+		string_puts(converts_number(h->num, 10, 0));
 		write_char(':');
 		write_char(' ');
-		_puts(h->str ? h->str : "(nil)");
-		_puts("\n");
+		string_puts(h->str ? h->str : "(nil)");
+		string_puts("\n");
 		h = h->next;
 		i++;
 	}
@@ -94,7 +94,7 @@ list_t *find_node_with_prefix(list_t *node, char *prefix, char c)
 
 	while (node)
 	{
-		p = starts_with(node->str, prefix);
+		p = needle_starts(node->str, prefix);
 		if (p && ((c == -1) || (*p == c)))
 			return node;
 		node = node->next;

@@ -81,7 +81,7 @@ ssize_t get_line_input(info_t *info)
 		}
 
 		*buf_p = p;
-		return (_strlen(p));
+		return (string_len(p));
 	}
 
 	*buf_p = buf;
@@ -163,7 +163,7 @@ int get_input_line(info_t *info, char **ptr, size_t *length)
  */
 void blockCtrlC(__attribute__((unused)) int sig_num)
 {
-	_puts("\n");
-	_puts("$ ");
+	string_puts("\n");
+	string_puts("$ ");
 	write_char(BUF_FLUSH);
 }

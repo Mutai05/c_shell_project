@@ -44,7 +44,7 @@ int _changedir(info_t *info)
 
 	s = getcwd(buffer, 1024);
 	if (!s)
-		_puts("TODO: >>Failure message here<<\n");
+		string_puts("TODO: >>Failure message here<<\n");
 	if (!info->argv[1])
 	{
 		dir = _environment_variable(info, "HOME=");
@@ -54,15 +54,15 @@ int _changedir(info_t *info)
 		else
 			chdir_ret = chdir(dir);
 	}
-	else if (_strcmp(info->argv[1], "-") == 0)
+	else if (string_cmp(info->argv[1], "-") == 0)
 	{
 		if (!_environment_variable(info, "OLDPWD="))
 		{
-			_puts(s);
+			string_puts(s);
 			write_char('\n');
 			return (1);
 		}
-		_puts(_environment_variable(info, "OLDPWD=")), write_char('\n');
+		string_puts(_environment_variable(info, "OLDPWD=")), write_char('\n');
 		chdir_ret =
 			chdir((dir = _environment_variable(info, "OLDPWD=")) ? dir : "/");
 	}
@@ -94,8 +94,8 @@ int _seehelp(info_t *info)
 	char **arg_array;
 
 	arg_array = info->argv;
-	_puts("Help function works\n");
+	string_puts("Help function works\n");
 	if (0)
-		_puts(*arg_array);
+		string_puts(*arg_array);
 	return (0);
 }

@@ -16,7 +16,7 @@ int hsh(info_t *info, char **av)
 	{
 		clear_info(info);
 		if (interactive(info))
-			_puts("shell$ ");
+			string_puts("shell$ ");
 		_write_char_to_stderr(BUF_FLUSH);
 		r = get_line_input(info);
 		if (r != -1)
@@ -64,7 +64,7 @@ int builtin_command(info_t *info)
 		{NULL, NULL}};
 
 	for (i = 0; builtintbl[i].type; i++)
-		if (_strcmp(info->argv[0], builtintbl[i].type) == 0)
+		if (string_cmp(info->argv[0], builtintbl[i].type) == 0)
 		{
 			info->line_count++;
 			built_in_ret = builtintbl[i].func(info);

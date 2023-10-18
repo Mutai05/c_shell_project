@@ -35,7 +35,7 @@ int remove_env_variable(info_t *info, char *var)
 
 	while (node)
 	{
-		p = starts_with(node->str, var);
+		p = needle_starts(node->str, var);
 		if (p && *p == '=')
 		{
 			info->env_changed = remove_node_at_index(&(info->env), i);
@@ -66,16 +66,16 @@ int add_env_variable(info_t *info, char *var, char *value)
 	if (!var || !value)
 		return (0);
 
-	buf = malloc(_strlen(var) + _strlen(value) + 2);
+	buf = malloc(string_len(var) + string_len(value) + 2);
 	if (!buf)
 		return (1);
-	_strcpy(buf, var);
-	_strcat(buf, "=");
-	_strcat(buf, value);
+	string_cpy(buf, var);
+	string_conc(buf, "=");
+	string_conc(buf, value);
 	node = info->env;
 	while (node)
 	{
-		p = starts_with(node->str, var);
+		p = needle_starts(node->str, var);
 		if (p && *p == '=')
 		{
 			free(node->str);
