@@ -113,9 +113,9 @@ char *_strdup(const char *);
 void _puts(char *);
 int write_char(char);
 
-char *_strncpy(char *, char *, int);
-char *_strncat(char *, char *, int);
-char *_strchr(char *, char);
+char *copy_string(char *, char *, int);
+char *string_cat(char *, char *, int);
+char *string_char(char *, char);
 
 char **strtow(char *, char *);
 char **strtow2(char *, char);
