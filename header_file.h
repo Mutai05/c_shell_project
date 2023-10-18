@@ -124,7 +124,7 @@ char *fill_memory(char *, char, unsigned int);
 void free_string(char **);
 void *resize_memory_block(void *, unsigned int, unsigned int);
 
-int bfree(void **);
+int free_pointer(void **);
 
 int interactive(info_t *);
 int is_delim(char, char *);
