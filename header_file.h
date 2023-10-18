@@ -120,9 +120,9 @@ char *_strchr(char *, char);
 char **strtow(char *, char *);
 char **strtow2(char *, char);
 
-char *_memset(char *, char, unsigned int);
-void ffree(char **);
-void *_realloc(void *, unsigned int, unsigned int);
+char *fill_memory(char *, char, unsigned int);
+void free_string(char **);
+void *resize_memory_block(void *, unsigned int, unsigned int);
 
 int bfree(void **);
 

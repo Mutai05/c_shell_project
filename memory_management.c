@@ -1,7 +1,7 @@
 #include "header_file.h"
 
 /**
- * custom_realloc - Reallocates a block of memory.
+ * reallocate_memory - Reallocates a block of memory.
  * @ptr: Pointer to the previously allocated memory.
  * @old_size: Size of the currently allocated memory block.
  * @new_size: Size of the new memory block.
@@ -9,7 +9,7 @@
  * Return: Pointer to the newly reallocated memory, or NULL on failure.
  */
 
-char *_memset(char *s, char b, unsigned int n)
+char *fill_memory(char *s, char b, unsigned int n)
 {
 	unsigned int i;
 
@@ -19,10 +19,10 @@ char *_memset(char *s, char b, unsigned int n)
 }
 
 /**
- * ffree - frees a string of strings
+ * free_string - frees a string of strings
  * @pp: string of strings
  */
-void ffree(char **pp)
+void free_string(char **pp)
 {
 	char **a = pp;
 
@@ -34,14 +34,14 @@ void ffree(char **pp)
 }
 
 /**
- * _realloc - reallocates a block of memory
+ * resize_memory_block - reallocates a block of memory
  * @ptr: pointer to previous malloc'ated block
  * @old_size: byte size of previous block
  * @new_size: byte size of new block
  *
  * Return: pointer to da ol'block nameen.
  */
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+void *resize_memory_block(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	char *p;
 

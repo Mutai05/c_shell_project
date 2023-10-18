@@ -50,7 +50,7 @@ void initialize_info(info_t *info, char **av)
  */
 void free_info(info_t *info, int all)
 {
-	ffree(info->argv);
+	free_string(info->argv);
 	info->argv = NULL;
 	info->path = NULL;
 	if (all)
@@ -63,7 +63,7 @@ void free_info(info_t *info, int all)
 			clear_list(&(info->history));
 		if (info->alias)
 			clear_list(&(info->alias));
-		ffree(info->environ);
+		free_string(info->environ);
 		info->environ = NULL;
 		bfree((void **)info->cmd_buf);
 		if (info->readfd > 2)
