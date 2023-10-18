@@ -100,7 +100,7 @@ void find_cmd(info_t *info)
 	if (!k)
 		return;
 
-	path = find_path(info, _environment_variable(info, "PATH="), info->argv[0]);
+	path = locate_path(info, _environment_variable(info, "PATH="), info->argv[0]);
 	if (path)
 	{
 		info->path = path;
@@ -108,7 +108,7 @@ void find_cmd(info_t *info)
 	}
 	else
 	{
-		if ((interactive(info) || _environment_variable(info, "PATH=") || info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
+		if ((interactive(info) || _environment_variable(info, "PATH=") || info->argv[0][0] == '/') && file_cmd(info, info->argv[0]))
 			fork_cmd(info);
 		else if (*(info->arg) != '\n')
 		{
