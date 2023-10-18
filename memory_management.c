@@ -1,45 +1,16 @@
 #include "header_file.h"
 
 /**
- * reallocate_memory - Reallocates a block of memory.
+ * resize_memory_block - Reallocates a block of memory.
  * @ptr: Pointer to the previously allocated memory.
  * @old_size: Size of the currently allocated memory block.
  * @new_size: Size of the new memory block.
  *
- * Return: Pointer to the newly reallocated memory, or NULL on failure.
- */
-
-char *fill_memory(char *s, char b, unsigned int n)
-{
-	unsigned int i;
-
-	for (i = 0; i < n; i++)
-		s[i] = b;
-	return (s);
-}
-
-/**
- * free_string - frees a string of strings
- * @pp: string of strings
- */
-void free_string(char **pp)
-{
-	char **a = pp;
-
-	if (!pp)
-		return;
-	while (*pp)
-		free(*pp++);
-	free(a);
-}
-
-/**
- * resize_memory_block - reallocates a block of memory
- * @ptr: pointer to previous malloc'ated block
- * @old_size: byte size of previous block
- * @new_size: byte size of new block
+ * This function reallocates a block of memory. If ptr is NULL, it behaves
+ * like malloc and allocates a new block of memory of the specified new_size.
+ * If new_size is 0, it behaves like free and releases the memory pointed to by ptr.
  *
- * Return: pointer to da ol'block nameen.
+ * Return: Pointer to the newly reallocated memory, or NULL on failure.
  */
 void *resize_memory_block(void *ptr, unsigned int old_size, unsigned int new_size)
 {
@@ -61,4 +32,40 @@ void *resize_memory_block(void *ptr, unsigned int old_size, unsigned int new_siz
 		p[old_size] = ((char *)ptr)[old_size];
 	free(ptr);
 	return (p);
+}
+
+/**
+ * fill_memory - Fills a block of memory with a specified value.
+ * @s: Pointer to the memory block to be filled.
+ * @b: The value to fill the memory with.
+ * @n: Number of bytes to fill.
+ *
+ * This function fills a block of memory pointed to by s with the value b for n bytes.
+ *
+ * Return: The pointer to the filled memory block.
+ */
+char *fill_memory(char *s, char b, unsigned int n)
+{
+	unsigned int i;
+
+	for (i = 0; i < n; i++)
+		s[i] = b;
+	return (s);
+}
+
+/**
+ * free_string - Frees a block of memory allocated for a string array.
+ * @pp: Pointer to the string array to be freed.
+ *
+ * This function frees a block of memory allocated for an array of strings.
+ */
+void free_string(char **pp)
+{
+	char **a = pp;
+
+	if (!pp)
+		return;
+	while (*pp)
+		free(*pp++);
+	free(a);
 }
