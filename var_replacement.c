@@ -1,14 +1,14 @@
 #include "header_file.h"
 
 /**
- * is_chain - test if current char in buffer is a chain delimeter
+ * char_del - test if current char in buffer is a chain delimeter
  * @info: the parameter struct
  * @buf: the char buffer
  * @p: address of current position in buf
  *
  * Return: 1 if chain delimeter, 0 otherwise
  */
-int is_chain(info_t *info, char *buf, size_t *p)
+int char_del(info_t *info, char *buf, size_t *p)
 {
 	size_t j = *p;
 
@@ -24,9 +24,9 @@ int is_chain(info_t *info, char *buf, size_t *p)
 		j++;
 		info->cmd_buf_type = CMD_AND;
 	}
-	else if (buf[j] == ';') /* found end of this command */
+	else if (buf[j] == ';')
 	{
-		buf[j] = 0; /* replace semicolon with null */
+		buf[j] = 0;
 		info->cmd_buf_type = CMD_CHAIN;
 	}
 	else
@@ -36,7 +36,7 @@ int is_chain(info_t *info, char *buf, size_t *p)
 }
 
 /**
- * check_chain - checks we should continue chaining based on last status
+ * monitor_chain - checks we should continue chaining based on last status
  * @info: the parameter struct
  * @buf: the char buffer
  * @p: address of current position in buf
@@ -45,7 +45,7 @@ int is_chain(info_t *info, char *buf, size_t *p)
  *
  * Return: Void
  */
-void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
+void monitor_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 {
 	size_t j = *p;
 
@@ -117,24 +117,23 @@ int replace_vars(info_t *info)
 		if (!string_cmp(info->argv[i], "$?"))
 		{
 			replace_string(&(info->argv[i]),
-				string_dpl(converts_number(info->status, 10, 0)));
+						   string_dpl(converts_number(info->status, 10, 0)));
 			continue;
 		}
 		if (!string_cmp(info->argv[i], "$$"))
 		{
 			replace_string(&(info->argv[i]),
-				string_dpl(converts_number(getpid(), 10, 0)));
+						   string_dpl(converts_number(getpid(), 10, 0)));
 			continue;
 		}
 		node = find_node_with_prefix(info->env, &info->argv[i][1], '=');
 		if (node)
 		{
 			replace_string(&(info->argv[i]),
-				string_dpl(string_char(node->str, '=') + 1));
+						   string_dpl(string_char(node->str, '=') + 1));
 			continue;
 		}
 		replace_string(&info->argv[i], string_dpl(""));
-
 	}
 	return (0);
 }

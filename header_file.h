@@ -126,10 +126,10 @@ void *resize_memory_block(void *, unsigned int, unsigned int);
 
 int free_pointer(void **);
 
-int interactive(info_t *);
-int is_delim(char, char *);
-int _isalpha(int);
-int _atoi(char *);
+int interactive_mode(info_t *);
+int char_delim(char, char *);
+int char_alpha(int);
+int conv_str_int(char *);
 
 int string_to_int(char *);
 void print_error(info_t *, char *);
@@ -180,8 +180,8 @@ size_t show_list(const list_t *);
 list_t *find_node_with_prefix(list_t *, char *, char);
 ssize_t retrieve_node_index(list_t *, list_t *);
 
-int is_chain(info_t *, char *, size_t *);
-void check_chain(info_t *, char *, size_t *, size_t, size_t);
+int char_del(info_t *, char *, size_t *);
+void monitor_chain(info_t *, char *, size_t *, size_t, size_t);
 int replace_alias(info_t *);
 int replace_vars(info_t *);
 int replace_string(char **, char *);

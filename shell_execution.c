@@ -15,7 +15,7 @@ int hsh(info_t *info, char **av)
 	while (r != -1 && builtin_ret != -2)
 	{
 		clear_info(info);
-		if (interactive(info))
+		if (interactive_mode(info))
 			string_puts("shell$ ");
 		_write_char_to_stderr(BUF_FLUSH);
 		r = get_line_input(info);
@@ -26,13 +26,13 @@ int hsh(info_t *info, char **av)
 			if (builtin_ret == -1)
 				command_path(info);
 		}
-		else if (interactive(info))
+		else if (interactive_mode(info))
 			write_char('\n');
 		free_info(info, 0);
 	}
 	save_history_to_file(info);
 	free_info(info, 1);
-	if (!interactive(info) && info->status)
+	if (!interactive_mode(info) && info->status)
 		exit(info->status);
 	if (builtin_ret == -2)
 	{
@@ -89,7 +89,7 @@ void command_path(info_t *info)
 		info->linecount_flag = 0;
 	}
 	for (i = 0, k = 0; info->arg[i]; i++)
-		if (!is_delim(info->arg[i], " \t\n"))
+		if (!char_delim(info->arg[i], " \t\n"))
 			k++;
 	if (!k)
 		return;
@@ -102,7 +102,7 @@ void command_path(info_t *info)
 	}
 	else
 	{
-		if ((interactive(info) || _environment_variable(info, "PATH=") || info->argv[0][0] == '/') && file_cmd(info, info->argv[0]))
+		if ((interactive_mode(info) || _environment_variable(info, "PATH=") || info->argv[0][0] == '/') && file_cmd(info, info->argv[0]))
 			fork_command(info);
 		else if (*(info->arg) != '\n')
 		{

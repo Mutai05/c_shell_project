@@ -65,10 +65,10 @@ ssize_t get_line_input(info_t *info)
 		j = i;
 		p = buf + i;
 
-		check_chain(info, buf, &j, i, len);
+		monitor_chain(info, buf, &j, i, len);
 		while (j < len)
 		{
-			if (is_chain(info, buf, &j))
+			if (char_del(info, buf, &j))
 				break;
 			j++;
 		}

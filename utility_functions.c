@@ -1,24 +1,24 @@
 #include "header_file.h"
 
 /**
- * interactive - Checks if the shell is in interactive mode.
+ * interactive_mode - Checks if the shell is in interactive_mode mode.
  * @info: The structure containing information about the shell.
  *
- * Return: 1 if the shell is in interactive mode, 0 otherwise.
+ * Return: 1 if the shell is in interactive_mode mode, 0 otherwise.
  */
-int interactive(info_t *info)
+int interactive_mode(info_t *info)
 {
 	return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
 /**
- * is_delim - Checks if a character is a delimiter.
+ * char_delim - Checks if a character is a delimiter.
  * @c: The character to check.
  * @delim: The delimiter string.
  *
  * Return: 1 if true, 0 if false.
  */
-int is_delim(char c, char *delim)
+int char_delim(char c, char *delim)
 {
 	while (*delim)
 		if (*delim++ == c)
@@ -27,12 +27,12 @@ int is_delim(char c, char *delim)
 }
 
 /**
- * _isalpha - Checks if a character is alphabetic.
+ * char_alpha - Checks if a character is alphabetic.
  * @c: The character to check.
  *
  * Return: 1 if 'c' is alphabetic, 0 otherwise.
  */
-int _isalpha(int c)
+int char_alpha(int c)
 {
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 		return (1);
@@ -41,12 +41,12 @@ int _isalpha(int c)
 }
 
 /**
- * _atoi - Converts a string to an integer.
+ * conv_str_int - Converts a string to an integer.
  * @s: The string to be converted.
  *
  * Return: 0 if there are no numbers in the string, the converted number otherwise.
  */
-int _atoi(char *s)
+int conv_str_int(char *s)
 {
 	int i, sign = 1, flag = 0, output;
 	unsigned int result = 0;

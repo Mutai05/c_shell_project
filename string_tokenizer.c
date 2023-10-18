@@ -20,7 +20,7 @@ char **tokenize_string(char *str, char *delimiter)
 
 	for (i = 0; str[i] != '\0'; i++)
 	{
-		if (!is_delim(str[i], delimiter) && (is_delim(str[i + 1], delimiter) || !str[i + 1]))
+		if (!char_delim(str[i], delimiter) && (char_delim(str[i + 1], delimiter) || !str[i + 1]))
 			numwords++;
 	}
 
@@ -33,11 +33,11 @@ char **tokenize_string(char *str, char *delimiter)
 
 	for (i = 0, j = 0; j < numwords; j++)
 	{
-		while (is_delim(str[i], delimiter))
+		while (char_delim(str[i], delimiter))
 			i++;
 
 		k = 0;
-		while (!is_delim(str[i + k], delimiter) && str[i + k])
+		while (!char_delim(str[i + k], delimiter) && str[i + k])
 			k++;
 
 		words[j] = malloc((k + 1) * sizeof(char));
